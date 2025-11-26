@@ -1,3 +1,43 @@
+黄金
+金价
+现货黄金
+黄金期货
+XAU/USD
+
+标普全球1200医疗保健
+S&P Global 1200 Health Care
+
+科伦博泰生物
+Kelun-Biotech
+礼来
+Eli Lilly
+诺华制药
+Novartis
+强生
+Johnson & Johnson
+默沙东
+Merck
+!广告
+!招聘
+
+波士顿科学
+Boston Scientific
+泰尼特保健
+Tenet Healthcare
+!预测
+!广告
+
+医疗保健
+生物技术
+制药行业
+医疗器械
+疫苗
+基因疗法
+FDA批准
+EMA批准
+!广告
+!培训
+
 A股
 上证
 深证
@@ -15,12 +55,6 @@ A股
 纳指
 纽约证交所
 科技股
-
-黄金
-金价
-现货黄金
-黄金期货
-XAU/USD
 
 比特币
 以太坊
