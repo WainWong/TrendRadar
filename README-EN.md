@@ -1,5 +1,7 @@
 <div align="center" id="trendradar">
 
+> **📢 Announcement:** After communicating with GitHub officials, "One-Click Fork Deployment" will be restored after compliance adjustments are completed. Please stay tuned for **v4.0.0** update
+
 <a href="https://github.com/sansan0/TrendRadar" title="TrendRadar">
   <img src="/_image/banner.webp" alt="TrendRadar Banner" width="80%">
 </a>
@@ -41,34 +43,67 @@
 
 </div>
 
-
 > This project is designed to be lightweight and easy to deploy
 
-<details>
-<summary>⚠️ Click to expand: <strong>Fork Guide: Docs, Resource Limits & Deployment Options</strong></summary>
 <br>
 
-**📄 Documentation Version:**
+<details>
+<summary>🚨 <strong>【MUST READ】Important Announcement: The Correct Way to Deploy This Project</strong></summary>
 
-If you use this project via **Fork**, you might be viewing outdated documentation. Fork copies the documentation version at that time, but the original project may have been updated.
+<br>
 
-**👉 [Click to View Latest Official Documentation](https://github.com/sansan0/TrendRadar?tab=readme-ov-file)**
+> **⚠️ December 2025 Urgent Notice**
+>
+> Due to a surge in Fork numbers causing excessive load on GitHub servers, **GitHub Actions and GitHub Pages deployments are currently restricted**. Please read the following instructions carefully to ensure successful deployment.
 
-**How to Tell?** Check the repository address at the top of the page:
-- `github.com/your-username/TrendRadar` ← Your forked version
-- `github.com/sansan0/TrendRadar` ← Latest official version
+### 1. ✅ Only Recommended Deployment Method: Docker
+
+**This is currently the most stable solution, free from GitHub restrictions.** Data is stored locally and won't be affected by GitHub policy changes.
+
+* 👉 [Jump to Docker Deployment Tutorial](#6-docker-deployment)
 
 ---
 
-**🛡️ Resource Limits & Safety Tips:**
+### 2. If You Were Planning to Fork This Project...
 
-GitHub provides limited Actions resources per account. To avoid being flagged for abuse and risking account suspension:
+To reduce pressure on GitHub servers, **please DO NOT directly click the "Fork" button!**
 
-- **Platform Count**: Keep it around **10 platforms** — more platforms consume more resources
-- **Run Frequency**: Minimum interval of **30 minutes** — more frequent runs are unnecessary
-- **Fair Use**: GitHub Actions is designed for lightweight scheduled tasks, not high-frequency crawlers
+Please use the **"Use this template"** feature instead of Fork:
 
-💡 **Want more freedom?** Try [🐳 Docker Deployment](#6-docker-deployment) on your own server with no restrictions.
+1.  **Click** the green **[Use this template]** button in the top right corner of the original repository page.
+2.  **Select** "Create a new repository".
+
+**Why do this?**
+* **❌ Fork**: Copies complete history records. Many forks running simultaneously will trigger GitHub risk control.
+* **✅ Use this template**: Creates a completely new independent repository without historical baggage, more server-friendly.
+
+---
+
+### 3. About New Data Storage
+
+The new version will use **Cloudflare R2** to store news data, ensuring data persistence.
+
+**⚠️ Configuration Prerequisites:**
+
+According to Cloudflare platform rules, activating R2 requires binding a payment method.
+
+- **Purpose:** Identity verification only (Verify Only), no charges will be incurred.
+- **Payment:** Supports credit cards or PayPal (China region).
+- **Usage:** R2's free tier is sufficient to cover this project's daily operation, no payment required.
+
+---
+
+### 4. 📅 Future Plans & Documentation Reading Notes
+
+> **Future Plans:**
+> - Exploring new approach: keep Actions for fetching and pushing, but no longer save data to repository, use external storage instead.
+
+**⚠️ Reading Note:**
+Given that the above plans mean **Fork deployment mode may return in a new form in the future**, and the workload to fully revise documentation is massive, we have temporarily retained the old descriptions.
+
+**At the current stage, if "Fork" related expressions still appear in subsequent tutorials, please ignore them or understand them as "Use this template"**.
+
+👉 **[Click here to view TrendRadar's latest official documentation](https://github.com/sansan0/TrendRadar?tab=readme-ov-file)**
 
 </details>
 
@@ -362,7 +397,7 @@ Transform from "algorithm recommendation captivity" to "actively getting the inf
 
 **🔧 Upgrade Instructions**:
 - **GitHub Fork Users**: Update `main.py`, `config/config.yaml` (Added multi-account push support, existing single-account configuration unaffected)
-- **Docker Users**: Update `.env`, `docker-compose.yml` or set environment variables `REVERSE_CONTENT_ORDER`, `MAX_ACCOUNTS_PER_CHANNEL`
+- **Docker Users**: Update `.env`, `docker compose.yml` or set environment variables `REVERSE_CONTENT_ORDER`, `MAX_ACCOUNTS_PER_CHANNEL`
 - **Multi-Account Push**: New feature, disabled by default, existing single-account configuration unaffected
 
 
@@ -485,7 +520,7 @@ Transform from "algorithm recommendation captivity" to "actively getting the inf
 
 - **Added Personal WeChat Push Support**: WeWork application can push to personal WeChat without installing WeWork APP
 - Supports two message formats: `markdown` (WeWork group bot) and `text` (personal WeChat app)
-- Added `WEWORK_MSG_TYPE` environment variable configuration, supporting GitHub Actions, Docker, docker-compose and other deployment methods
+- Added `WEWORK_MSG_TYPE` environment variable configuration, supporting GitHub Actions, Docker, docker compose and other deployment methods
 - `text` mode automatically strips Markdown syntax for clean plain text push
 - See "Personal WeChat Push" configuration in Quick Start
 
@@ -1983,7 +2018,7 @@ TrendRadar provides two independent Docker images, deploy according to your need
 
 ---
 
-#### Method 1: Using docker-compose (Recommended)
+#### Method 1: Using docker compose (Recommended)
 
 1. **Create Project Directory and Config**:
 
@@ -2004,9 +2039,9 @@ TrendRadar provides two independent Docker images, deploy according to your need
    wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/config/config.yaml -P config/
    wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/config/frequency_words.txt -P config/
 
-   # Download docker-compose config
+   # Download docker compose config
    wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/docker/.env -P docker/
-   wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/docker/docker-compose.yml -P docker/
+   wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/docker/docker compose.yml -P docker/
    ```
 
    > 💡 **Note**: Key directory structure required for Docker deployment:
@@ -2017,7 +2052,7 @@ current directory/
 │   └── frequency_words.txt
 └── docker/
     ├── .env
-    └── docker-compose.yml
+    └── docker compose.yml
 ```
 
 2. **Config File Description**:
@@ -2047,7 +2082,7 @@ current directory/
    **Usage Method**:
    - Modify `.env` file, uncomment and fill in needed configs
    - Or add directly in NAS/Synology Docker management interface's "Environment Variables"
-   - Restart container to take effect: `docker-compose up -d`
+   - Restart container to take effect: `docker compose up -d`
 
 
 3. **Start Service**:
@@ -2055,24 +2090,24 @@ current directory/
    **Option A: Start All Services (Push + AI Analysis)**
    ```bash
    # Pull latest images
-   docker-compose pull
+   docker compose pull
 
    # Start all services (trend-radar + trend-radar-mcp)
-   docker-compose up -d
+   docker compose up -d
    ```
 
    **Option B: Start News Push Service Only**
    ```bash
    # Start trend-radar only (scheduled crawling and push)
-   docker-compose pull trend-radar
-   docker-compose up -d trend-radar
+   docker compose pull trend-radar
+   docker compose up -d trend-radar
    ```
 
    **Option C: Start MCP AI Analysis Service Only**
    ```bash
    # Start trend-radar-mcp only (AI analysis interface)
-   docker-compose pull trend-radar-mcp
-   docker-compose up -d trend-radar-mcp
+   docker compose pull trend-radar-mcp
+   docker compose up -d trend-radar-mcp
    ```
 
    > 💡 **Tips**:
@@ -2092,8 +2127,8 @@ current directory/
    docker ps | grep trend-radar
 
    # Stop specific service
-   docker-compose stop trend-radar      # Stop push service
-   docker-compose stop trend-radar-mcp  # Stop MCP service
+   docker compose stop trend-radar      # Stop push service
+   docker compose stop trend-radar-mcp  # Stop MCP service
    ```
 
 #### Method 2: Local Build (Developer Option)
@@ -2109,25 +2144,25 @@ cd TrendRadar
 vim config/config.yaml
 vim config/frequency_words.txt
 
-# Use build version docker-compose
+# Use build version docker compose
 cd docker
-cp docker-compose-build.yml docker-compose.yml
+cp docker compose-build.yml docker compose.yml
 ```
 
 **Build and Start Services**:
 
 ```bash
 # Option A: Build and start all services
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 
 # Option B: Build and start news push service only
-docker-compose build trend-radar
-docker-compose up -d trend-radar
+docker compose build trend-radar
+docker compose up -d trend-radar
 
 # Option C: Build and start MCP AI analysis service only
-docker-compose build trend-radar-mcp
-docker-compose up -d trend-radar-mcp
+docker compose build trend-radar-mcp
+docker compose up -d trend-radar-mcp
 ```
 
 > 💡 **Architecture Parameter Notes**:
@@ -2135,7 +2170,7 @@ docker-compose up -d trend-radar-mcp
 > - To build `arm64` architecture (Apple Silicon, Raspberry Pi, etc.), set environment variable:
 >   ```bash
 >   export DOCKER_ARCH=arm64
->   docker-compose build
+>   docker compose build
 >   ```
 
 #### Image Update
@@ -2144,12 +2179,12 @@ docker-compose up -d trend-radar-mcp
 # Method 1: Manual update (Crawler + MCP images)
 docker pull wantcat/trendradar:latest
 docker pull wantcat/trendradar-mcp:latest
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 
-# Method 2: Using docker-compose update
-docker-compose pull
-docker-compose up -d
+# Method 2: Using docker compose update
+docker compose pull
+docker compose up -d
 ```
 
 **Available Images**:
@@ -2286,14 +2321,14 @@ flowchart TB
 
 **Quick Start**:
 
-Use docker-compose to start both news push and MCP services:
+Use docker compose to start both news push and MCP services:
 
 ```bash
-# Download latest docker-compose.yml (includes MCP service config)
-wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/docker/docker-compose.yml
+# Download latest docker compose.yml (includes MCP service config)
+wget https://raw.githubusercontent.com/sansan0/TrendRadar/master/docker/docker compose.yml
 
 # Start all services
-docker-compose up -d
+docker compose up -d
 
 # Check running status
 docker ps | grep trend-radar
